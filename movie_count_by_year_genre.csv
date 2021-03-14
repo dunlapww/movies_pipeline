@@ -1013,23 +1013,24 @@ year,genre,movie_count
 1994,War,5
 1994,Western,7
 1995,Action,59
-1995,Adventure,34
-1995,Animation,9
-1995,Comedy,110
+1995,Adventure,33
+1995,Animation,8
+1995,Comedy,107
 1995,Crime,47
 1995,Documentary,18
-1995,Drama,186
-1995,Family,43
-1995,Fantasy,23
+1995,Drama,185
+1995,Family,41
+1995,Fantasy,22
 1995,Foreign,5
 1995,History,9
 1995,Horror,20
 1995,Music,3
 1995,Mystery,14
-1995,Romance,79
+1995,Romance,78
 1995,Science Fiction,21
 1995,TV Movie,2
 1995,Thriller,66
+1995,Unassigned,2
 1995,War,10
 1995,Western,4
 1996,Action,50
@@ -1074,7 +1075,7 @@ year,genre,movie_count
 1998,Action,45
 1998,Adventure,32
 1998,Animation,11
-1998,Comedy,136
+1998,Comedy,137
 1998,Crime,45
 1998,Documentary,16
 1998,Drama,191
