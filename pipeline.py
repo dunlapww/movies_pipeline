@@ -45,3 +45,19 @@ bad_data.to_csv('bad_data.csv', columns = headers, index = False)
 df_clean = df.loc[df['error_desc'] == 'no error']
 clean_headers = ['movie_id', 'genre_list', 'release_year']
 df_clean = df_clean[clean_headers]
+
+def has_genre(genre):
+  try:
+    return genre['name']
+  except:
+    return 'Unassigned'
+
+#blow out movies and genres to list of dictionaries
+movies = []
+for row in df_clean.itertuples():
+  for genre in row[2]:
+    movie = {}
+    movie['genre'] = has_genre(genre)
+    movie['year'] = row[3]
+    movie['movie_id'] = row[1]
+    movies.append(movie)
