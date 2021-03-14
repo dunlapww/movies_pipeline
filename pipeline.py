@@ -40,3 +40,8 @@ df.loc[df['genre_list'] == False, 'error_desc'] = 'genre is not a valid list'
 bad_data = df.loc[df['error_desc'] != 'no error']
 headers = ['movie_id', 'genres', 'release_date', 'error_desc']
 bad_data.to_csv('bad_data.csv', columns = headers, index = False)
+
+#create clean table of data
+df_clean = df.loc[df['error_desc'] == 'no error']
+clean_headers = ['movie_id', 'genre_list', 'release_year']
+df_clean = df_clean[clean_headers]
