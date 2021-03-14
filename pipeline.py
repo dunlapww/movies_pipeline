@@ -35,3 +35,8 @@ df.loc[df['release_year'] == False, 'error_desc'] = 'bad date'
 df.loc[df['dupes'] == True, 'error_desc'] = 'duplicate movie id'
 df.loc[df['id_is_digit'] == False, 'error_desc'] = 'movie_id is not an integer'
 df.loc[df['genre_list'] == False, 'error_desc'] = 'genre is not a valid list'
+
+#export invalid records to csv
+bad_data = df.loc[df['error_desc'] != 'no error']
+headers = ['movie_id', 'genres', 'release_date', 'error_desc']
+bad_data.to_csv('bad_data.csv', columns = headers, index = False)
