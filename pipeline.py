@@ -29,3 +29,9 @@ df["release_year"] = df['release_date'].apply(lambda x: check_date(x))
 df['dupes'] = df.duplicated(subset = 'movie_id', keep = 'first')
 df['id_is_digit'] = df['movie_id'].apply(lambda x: str(x).isdigit())
 df['genre_list'] = df['genres'].apply(lambda x: to_list(x))
+
+#update invalid records with correct error description
+df.loc[df['release_year'] == False, 'error_desc'] = 'bad date'
+df.loc[df['dupes'] == True, 'error_desc'] = 'duplicate movie id'
+df.loc[df['id_is_digit'] == False, 'error_desc'] = 'movie_id is not an integer'
+df.loc[df['genre_list'] == False, 'error_desc'] = 'genre is not a valid list'
