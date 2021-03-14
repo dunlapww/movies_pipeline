@@ -61,3 +61,6 @@ for row in df_clean.itertuples():
     movie['year'] = row[3]
     movie['movie_id'] = row[1]
     movies.append(movie)
+
+#create a dataframe from those dictionaries
+df_movies = pd.DataFrame(movies)
