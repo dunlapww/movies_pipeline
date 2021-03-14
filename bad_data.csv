@@ -1,7 +1,4 @@
 movie_id,genres,release_date,error_desc
-862,"[{'id': 16, 'name': 'Animation'}, {'id': 35, 'name': 'Comedy'}, {'id': 10751, 'name': 'Family'}]",'doop',bad date
-8844,"[{'id': 12, 'name': 'Adventure'}, {'id': 14, 'name': 'Fantasy'}, {'id': 10751, 'name': 'Family'} djks",1995-12-15,genre is not a valid list
-'a',"[{'id': 35, 'name': 'Comedy'}, {'id': 18, 'name': 'Drama'}, {'id': 10749, 'name': 'Romance'}]",1995-12-22,movie_id is not an integer
 124057,[],1997-07-08,genre is not a valid list
 188588,[],1995-11-22,genre is not a valid list
 290157,[],1995-01-01,genre is not a valid list
@@ -63,6 +60,7 @@ movie_id,genres,release_date,error_desc
 77314,[],1991-12-04,genre is not a valid list
 134368,[],1998-10-09,genre is not a valid list
 125762,[],1998-12-04,genre is not a valid list
+10663,"[{'id': 35, 'name': 'Comedy'} GATORADE",1998-11-06,genre is not a valid list
 215875,[],1986-04-04,genre is not a valid list
 296543,[],1997-01-01,genre is not a valid list
 170187,[],1998-09-10,genre is not a valid list
