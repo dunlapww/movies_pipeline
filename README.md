@@ -1,4 +1,4 @@
-# Pythons, Pandas, and Lambdas, Oh My!
+# Python, Pandas, and Lambdas, Oh My!
 
 ## Overview
 This application is a fairly simple data pipeline that ingests a csv of movie data, transforms it into a summary of the number of genre movies released each year, and exports the summary as a csv.
