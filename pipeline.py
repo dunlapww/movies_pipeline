@@ -13,6 +13,10 @@ def check_date(dt_string):
    return False
 
 #method to validate that genres is a list of dictionaries
+#note: I'm aware that using eval is very risky on an unknown data source
+#as it exposes us to injection attacks.  However, I couldn't find an
+#alterntive way to get pandas to recognize imported data as a list.
+
 def to_list(genres):
   try:
     data = eval(genres)
