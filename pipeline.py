@@ -64,3 +64,13 @@ for row in df_clean.itertuples():
 
 #create a dataframe from those dictionaries
 df_movies = pd.DataFrame(movies)
+
+#group df_movies by year, genre, count
+df_year_genre_count = df_movies.groupby(['year','genre']).count()
+df_year_genre_count.rename(columns={"movie_id": "movie_count"}, inplace= True)
+
+#export movies by year, genre, count to csv
+df_year_genre_count.to_csv('movie_count_by_year_genre.csv')
+
+print("Invalid data ingestion exported to: 'bad_data.csv'")
+print("Genre summary exported to: 'movie_count_by_year_genre.csv'")
