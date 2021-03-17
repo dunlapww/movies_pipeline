@@ -12,15 +12,17 @@ def check_date(dt_string):
   except:
    return False
 
-#method to validate that genres is a list of dictionaries
-#note: I'm aware that using eval is very risky on an unknown data source
-#as it exposes us to injection attacks.  However, I couldn't find an
-#alterntive way to get pandas to recognize imported data as a list.
+#ensures string contents is a list with contents
+def isvalidlist(genres):
+  return genres[0] == '[' and genres[-1] == ']' and len(genres) > 2
 
+#to_list method validates that genres is a list of dictionaries
+#note: I'm aware that using eval is very risky on an unknown data source
+#as it exposes us to injection attacks.  Incorporating the isvalidlist attempts
+#to mitigate the risk by ensuring that the contents is a list and not something more malicious
 def to_list(genres):
   try:
-    data = eval(genres)
-    if type(data) == list and data != []:
+    if isvalidlist(genres):
       return eval(genres)
     else:
       return False
@@ -33,6 +35,8 @@ df["release_year"] = df['release_date'].apply(lambda x: check_date(x))
 df['dupes'] = df.duplicated(subset = 'movie_id', keep = 'first')
 df['id_is_digit'] = df['movie_id'].apply(lambda x: str(x).isdigit())
 df['genre_list'] = df['genres'].apply(lambda x: to_list(x))
+
+print(df)
 
 #update invalid records with correct error description
 df.loc[df['release_year'] == False, 'error_desc'] = 'bad date'
