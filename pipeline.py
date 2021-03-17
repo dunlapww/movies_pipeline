@@ -36,8 +36,6 @@ df['dupes'] = df.duplicated(subset = 'movie_id', keep = 'first')
 df['id_is_digit'] = df['movie_id'].apply(lambda x: str(x).isdigit())
 df['genre_list'] = df['genres'].apply(lambda x: to_list(x))
 
-print(df)
-
 #update invalid records with correct error description
 df.loc[df['release_year'] == False, 'error_desc'] = 'bad date'
 df.loc[df['dupes'] == True, 'error_desc'] = 'duplicate movie id'
