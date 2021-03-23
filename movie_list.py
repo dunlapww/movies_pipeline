@@ -11,8 +11,8 @@ class MovieList:
     df.columns = header_list
     return df
 
-  def add_movies_column(self, column_name, column_value):
-    self.movies[column_name] = column_value
+  def add_error_column(self):
+    self.movies['error_desc'] = 'no error'
 
   def release_year(self, dt_string):
     try:
@@ -39,12 +39,15 @@ class MovieList:
   
   def to_list(self, genres):
     if self.list_check(genres) == False: 
-      return []
+      return False
     
     if type(eval(genres)) == list:
       return eval(genres)
     else:
-      return []
+      return False
 
   def add_genre_list(self):
     self.movies['genre_list'] = self.movies['genres'].apply(lambda x: self.to_list(x))
+
+  def update_error(self, column_name, criteria, message):
+    self.movies.loc[self.movies[column_name] == criteria, 'error_desc'] = message
