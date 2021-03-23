@@ -49,5 +49,13 @@ class MovieList:
   def add_genre_list(self):
     self.movies['genre_list'] = self.movies['genres'].apply(lambda x: self.to_list(x))
 
+  def add_validations(self):
+    self.add_error_column()
+    self.add_release_year()
+    self.add_mark_dupes()
+    self.add_id_is_digit()
+    self.add_genre_list()
+  
   def update_error(self, column_name, criteria, message):
     self.movies.loc[self.movies[column_name] == criteria, 'error_desc'] = message
+
