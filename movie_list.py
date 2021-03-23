@@ -10,3 +10,6 @@ class MovieList:
     df = pd.read_csv(csv_path, usecols = col_list)
     df.columns = header_list
     return df
+
+  def add_movies_column(self, column_name, column_value):
+    self.movies[column_name] = column_value
