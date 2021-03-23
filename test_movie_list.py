@@ -20,7 +20,7 @@ def test_it_can_create_a_dataframe_of_movie_details():
 def test_it_can_add_an_error_column():
   csv_path = 'movies_metadata_sample.csv'
   m1 = MovieList(csv_path)
-  m1.add_movies_column('error_desc', 'no error')
+  m1.add_error_column()
   assert m1.movies.columns[3] == 'error_desc'
   assert m1.movies.values[0][3] == 'no error'
 
@@ -81,8 +81,8 @@ def test_it_can_convert_to_list():
   test_list2 = f'[{test_dict1}, {test_dict2}'
   test_list3 = f'[]'
   assert len(m1.to_list(test_list1)) == 2
-  assert len(m1.to_list(test_list2)) == 0
-  assert len(m1.to_list(test_list3)) == 0
+  assert m1.to_list(test_list2) == False
+  assert m1.to_list(test_list3) == False
 
 def test_it_can_add_genre_column():
   csv_path = 'movies_metadata_bad_genre.csv'
@@ -93,10 +93,15 @@ def test_it_can_add_genre_column():
   m1.add_genre_list()
   assert m1.movies.columns[3] == 'genre_list'
   assert len(m1.movies.values[0][3]) > 0
-  assert len(m1.movies.values[1][3]) == 0
+  assert m1.movies.values[1][3] == False
   assert len(m1.movies.values[2][3]) > 0
-  assert len(m1.movies.values[3][3]) == 0
+  assert m1.movies.values[3][3] == False
   assert len(m1.movies.values[4][3]) > 0
-  assert len(m1.movies.values[5][3]) == 0
+  assert m1.movies.values[5][3] == False
   
-  
+def test_it_can_update_error_column():
+  csv_path = 'movies_metadata_bad_genre.csv'
+  m1 = MovieList(csv_path)
+  m1.add_error_column()
+  m1.add_genre_list()
+  m1.update_error('genre_list', False, 'genre is not a valid list')
