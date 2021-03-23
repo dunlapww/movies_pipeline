@@ -13,3 +13,14 @@ class MovieList:
 
   def add_movies_column(self, column_name, column_value):
     self.movies[column_name] = column_value
+
+  def release_year(self, dt_string):
+    try:
+      return int(pd.to_datetime(dt_string).year)
+    except:
+     return False
+  
+  def add_release_year(self):
+    self.movies["release_year"] = self.movies['release_date'].apply(lambda x: self.release_year(x))
+
+  
