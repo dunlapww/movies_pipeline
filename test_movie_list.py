@@ -22,3 +22,17 @@ def test_it_can_add_an_error_column():
   m1.add_movies_column('error_desc', 'no error')
   assert m1.movies.columns[3] == 'error_desc'
   assert m1.movies.values[0][3] == 'no error'
+
+def test_it_can_calc_year_from_str():
+  csv_path = 'movies_metadata_sample.csv'
+  m1 = MovieList(csv_path)
+  assert m1.release_year('3/1/2020') == 2020
+  assert m1.release_year('bad date') == False
+
+def test_it_can_add_year_column():
+  csv_path = 'movies_metadata_sample.csv'
+  m1 = MovieList(csv_path)
+  m1.add_release_year()
+  assert m1.movies.columns[3] == 'release_year'
+  assert len(str(m1.movies.values[0][3])) == 4
+  assert type(m1.movies.values[0][3]) == int
