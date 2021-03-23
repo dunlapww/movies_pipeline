@@ -100,8 +100,18 @@ def test_it_can_add_genre_column():
   assert m1.movies.values[5][3] == False
   
 def test_it_can_update_error_column():
-  csv_path = 'movies_metadata_bad_genre.csv'
+  csv_path = 'movies_metadata_sample.csv'
   m1 = MovieList(csv_path)
   m1.add_error_column()
   m1.add_genre_list()
   m1.update_error('genre_list', False, 'genre is not a valid list')
+
+def test_it_can_add_validation_columns():
+  csv_path = 'movies_metadata_sample.csv'
+  m1 = MovieList(csv_path)
+  m1.add_validations()
+  columns = m1.movies.columns
+  expected = ['genres', 'movie_id', 'release_date', 'error_desc', 'release_year',
+       'dupes', 'id_is_digit', 'genre_list']
+  for i in range(len(columns)-1):
+    assert columns[i] == expected[i]
