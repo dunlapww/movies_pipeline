@@ -1,8 +1,10 @@
 import pandas as pd
 import math
+
 class MovieList:
   def __init__(self,csv_path):
     self.movies = self.import_movies(csv_path)
+    #self.bad_data = self.bad_data()
   
   def import_movies(self, csv_path):
     col_list = ["id", "genres", "release_date"]
@@ -56,6 +58,20 @@ class MovieList:
     self.add_id_is_digit()
     self.add_genre_list()
   
-  def update_error(self, column_name, criteria, message):
-    self.movies.loc[self.movies[column_name] == criteria, 'error_desc'] = message
+  def update_error(self, search_column_name, criteria, message):
+    self.movies.loc[self.movies[search_column_name] == criteria, 'error_desc'] = message
 
+  def update_all_errors(self):
+    self.update_error('release_year', False, 'bad date')
+    self.update_error('dupes', True, 'duplicate movie id')
+    self.update_error('id_is_digit', False, 'movie_id is not an integer')
+    self.update_error('genre_list', False, 'genre is not a valid list')
+    
+  def bad_data(self):
+    self.add_validations()
+    self.update_all_errors()
+    return self.movies.loc[self.movies['error_desc'] != 'no error']
+  
+  def export_bad_data(self):
+    headers = ['movie_id', 'genres', 'release_date', 'error_desc']
+    self.bad_data().to_csv('bad_data.csv', columns = headers, index = False)
